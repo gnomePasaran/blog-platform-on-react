@@ -67,6 +67,7 @@ Image.propTypes = {
   alt: PropTypes.string
 };
 
+
 const Span = (props) => (
   DOM.span(
     {
@@ -76,7 +77,6 @@ const Span = (props) => (
   )
 );
 
-//не уверен, что сдесь должно быть?
 Span.defaultProps = {
   children: React.createElement(Span, null)
 };
@@ -84,6 +84,7 @@ Span.defaultProps = {
 Span.PropTypes = {
   children: PropTypes.instanceOf(Span)
 };
+
 
 const TextBox = (props) => (
   React.createElement(
@@ -93,17 +94,15 @@ const TextBox = (props) => (
     , React.createElement(
         'div',
         null,
-        `Author: ${props.author}|
-         Created at: ${props.created_at}|
-         Updated at: ${props.updated_at}`
+        `Author: ${props.author} |
+         Created at: ${props.created_at || ''} |
+         Updated at: ${props.updated_at || ''}`
       )
   )
 );
 
 TextBox.defaultProps = {
   author: 'Secret Person',
-  created_at: 'somewhen',
-  updated_at: "i don't know",
 };
 
 TextBox.propTypes = {
@@ -117,6 +116,7 @@ TextBox.propTypes = {
     PropTypes.numbers
   ]),
 };
+
 
 class Like extends React.Component {
   constructor(props) {
@@ -144,7 +144,6 @@ class Like extends React.Component {
     )
   };
 };
-
 
 Like.defaultProps = {
   count: 0,
@@ -178,7 +177,6 @@ BlogItem.propTypes = {
 };
 
 
-
 class BlogContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -191,6 +189,7 @@ class BlogContainer extends React.Component {
     return React.createElement(BlogList, { blogs })
   }
 };
+
 
 const BlogList = ({ blogs }) => (
   DOM.ul(
@@ -211,10 +210,11 @@ BlogList.defaultProps = {
   blogs: []
 };
 
-BlogList.propTypes = {
-  blogs: PropTypes.array,
+BlogList.PropTypes = {
+  blogs: PropTypes.shape({
+    blog: BlogItem.PropTypes
+  })
 };
-
 
 ReactDOM.render(
   React.createElement(BlogContainer),
