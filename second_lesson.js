@@ -211,9 +211,9 @@ BlogList.defaultProps = {
 };
 
 BlogList.PropTypes = {
-  blogs: PropTypes.shape({
+  blogs: PropTypes.shape(
     blog: BlogItem.PropTypes
-  })
+  )
 };
 
 ReactDOM.render(
