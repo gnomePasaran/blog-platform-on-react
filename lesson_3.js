@@ -42,6 +42,119 @@ const blogs = [
   }
 ];
 
+class BlogPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { blogs };
+
+    this.handleLikeClick = this.handleLikeClick.bind(this);
+  };
+
+  handleLikeClick(blogId) {
+    const newBlogs = _.map(blogs, (blog) => {
+      if (blog.id === blogId) ++blog.meta.count;
+      return blog;
+    });
+
+    this.setState({ blogs: newBlogs });
+  };
+
+  render() {
+    const { blogs } = this.state;
+    const likesChartData = _.map(this.state.blogs, (blog) => {
+      return [blog.text, blog.meta.count];
+    });
+    return (
+      React.createElement(
+        'div',
+        {},
+        React.createElement(BlogList, { blogs: blogs, handlerLikes: this.handleLikeClick })
+        , React.createElement(PieChart, { columns: likesChartData  })
+      )
+    )
+  };
+};
+
+
+const BlogList = ({blogs, handlerLikes}) => (
+  DOM.ul(
+    null,
+    _.map(
+      blogs,
+      (blog) => (
+        DOM.li(
+          { key: blog.id },
+          React.createElement(BlogItem, { blog: blog, handlerLikes: handlerLikes })
+        )
+      )
+    )
+  )
+);
+
+
+const BlogItem = (props) => (
+  React.createElement(
+    'div',
+    null,
+    React.createElement(Image, assign({}, props.blog.img) ),
+    React.createElement(TextBox, assign({}, props.blog.meta, { text: props.blog.text } )),
+    React.createElement(Like, {blog: props.blog, handlerLikes: props.handlerLikes })
+  )
+);
+
+BlogItem.defaultProps = {
+  blog: {
+    img:{},
+    text: '',
+    meta: {}
+  },
+};
+
+BlogItem.propTypes = {
+  blog: PropTypes.object,
+};
+
+
+BlogList.defaultProps = {
+  blogs: []
+};
+
+BlogList.PropTypes = {
+  blogs: PropTypes.shape(
+    BlogItem.PropTypes
+  )
+};
+
+
+class PieChart extends React.Component {
+  componentDidMount() {
+    this.chart = c3.generate({
+      bindto: ReactDOM.findDOMNode(this.refs.chart),
+      data: { columns: this.props.columns }
+    });
+  };
+
+  componentWillReceiveProps(newProps) {
+    this.chart.load({
+      columns: newProps.columns
+    });
+  };
+
+  componentWillUnmount() {
+    this.chart.destroy();
+  };
+
+  render() {
+    return (
+      React.createElement(
+        'div',
+        { ref: 'chart'}
+      )
+    )
+  };
+};
+
+
 const Image = (props) => (
   DOM.img({
     src: props.src,
@@ -145,78 +258,6 @@ Like.propTypes = {
   count: PropTypes.number
 };
 
-
-const BlogItem = (props) => (
-  React.createElement(
-    'div',
-    null,
-    React.createElement(Image, assign({}, props.blog.img) ),
-    React.createElement(TextBox, assign({}, props.blog.meta, { text: props.blog.text } )),
-    React.createElement(Like, {blog: props.blog, handlerLikes: props.handlerLikes })
-  )
-);
-
-BlogItem.defaultProps = {
-  blog: {
-    img:{},
-    text: '',
-    meta: {}
-  },
-};
-
-BlogItem.propTypes = {
-  blog: PropTypes.object,
-};
-
-
-class BlogPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { blogs };
-
-    this.handleLikeClick = this.handleLikeClick.bind(this);
-  };
-
-  handleLikeClick(blogId) {
-    const newBlogs = _.map(blogs, (blog) => {
-      if (blog.id === blogId) ++blog.meta.count;
-      return blog;
-    });
-
-    this.setState({ blogs: newBlogs });
-  };
-
-  render() {
-    const { blogs } = this.state;
-    return React.createElement(BlogList, { blogs: blogs, handlerLikes: this.handleLikeClick })
-  };
-};
-
-
-const BlogList = ({blogs, handlerLikes}) => (
-  DOM.ul(
-    null,
-    _.map(
-      blogs,
-      (blog) => (
-        DOM.li(
-          { key: blog.id },
-          React.createElement(BlogItem, { blog: blog, handlerLikes: handlerLikes })
-        )
-      )
-    )
-  )
-);
-
-BlogList.defaultProps = {
-  blogs: []
-};
-
-BlogList.PropTypes = {
-  blogs: PropTypes.shape(
-    BlogItem.PropTypes
-  )
-};
 
 ReactDOM.render(
   React.createElement(BlogPage),
