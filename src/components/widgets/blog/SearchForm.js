@@ -28,7 +28,7 @@ class SearchForm extends React.Component {
       <div>
         <input type="text" onChange={this.handleChange} />
         <ul>
-          <SearchList foundBlogs={this.state.foundBlogs} handleChange={this.handleChange} />
+          <SearchList foundBlogs={this.state.foundBlogs} />
         </ul>
       </div>
     );
@@ -38,5 +38,5 @@ class SearchForm extends React.Component {
 export default SearchForm;
 
 SearchForm.propTypes = {
-  blogs: PropTypes.array 
+  blogs: PropTypes.array
 };
