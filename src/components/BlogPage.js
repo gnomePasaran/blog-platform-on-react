@@ -6,8 +6,10 @@ import request from 'superagent';
 
 import BlogList from 'components/widgets/blog/BlogList';
 import PieChart from 'components/widgets/blog/PieChart';
+import Pagination from 'components/widgets/blog/elements/Pagination';
+import SearchForm from 'components/widgets/blog/SearchForm';
 
-import { Menu } from 'semantic-ui-react';
+import { Container, Grid } from 'semantic-ui-react';
 
 class BlogPage extends React.Component {
   constructor(props) {
@@ -29,7 +31,6 @@ class BlogPage extends React.Component {
       { page: activePage },
       (err, res) => this.setState({ blogs: res.body })
     );
-    console.log(this.state.blogs);
   }
 
   fetchPosts() {
@@ -40,36 +41,43 @@ class BlogPage extends React.Component {
     );
   }
 
-  render() {
-    const { activePage, blogs } = this.state;
-
+  paginationCounting() {
     const postsOnThePage = 3;
+    const { activePage, blogs } = this.state;
     const pagesCount = Math.ceil(blogs.length / postsOnThePage);
+    const blogsForRender = blogs
+      .slice((activePage - 1) * postsOnThePage, postsOnThePage * (activePage));
 
-    const likesChartData = _.map(this.state.blogs, (blog) => (
+    return { pagesCount, blogsForRender };
+  }
+
+  render() {
+    const { blogs } = this.state;
+
+    const likesChartData = _.map(blogs, (blog) => (
       [blog.text, blog.meta.count]
     ));
 
-    const menus = [];
-    for (let i = 1; i <= pagesCount; i++) {
-      menus.push(<Menu.Item name={i} active={activePage === i} onClick={() => this.paginationHandleClick(i)} />);
-    }
-
-    const blogsForRender = blogs.slice((activePage - 1) * postsOnThePage, postsOnThePage * (activePage));
+    const {activePage, pagesCount, blogsForRender} = this.paginationCounting();
     return (
-      <div>
-        <Menu pagination>
-          {menus}
-        </Menu>
-        <BlogList blogs={blogsForRender} />
-      </div>
-      // React.createElement(
-        // 'div',
-        // {}
-        //, React.createElement(BlogList, { blogs })
-        // , React.createElement(PieChart, { columns: likesChartData  })
-      );
-    // );
+      <Container fluid={true}>
+        <Grid columns={2}>
+          <Grid.Column>
+            <Pagination activePage={activePage} pagesCount={pagesCount}
+                        paginationHandleClick={this.paginationHandleClick} />
+            <BlogList blogs={blogsForRender} />
+          </Grid.Column>
+          <Grid.Column>
+            <Grid.Row>
+              <SearchForm blogs={blogs}/>
+            </Grid.Row>
+            <Grid.Row>
+              <PieChart columns={likesChartData} />
+            </Grid.Row>
+          </Grid.Column>
+        </Grid>
+      </Container>
+    );
   }
 }
 
