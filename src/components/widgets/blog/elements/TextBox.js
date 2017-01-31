@@ -1,5 +1,9 @@
 import React, { DOM, PropTypes } from 'react';
 
+import Link from 'components/elements/Link';
+
+import { postsPath } from 'helpers/routes';
+
 const Span = (props) => (
   DOM.span(
     {
@@ -18,17 +22,17 @@ Span.PropTypes = {
 };
 
 
-const TextBox = (props) => (
+const TextBox = ({ id, text, meta }) => (
   React.createElement(
     Span,
     {}
-    , props.text
+    , React.createElement(Link, { to: postsPath(id) }, text)
     , React.createElement(
         'div',
         null,
-        `Author: ${props.author} |
-         Created at: ${props.createdAt || ''} |
-         Updated at: ${props.updatedAt || ''}`
+        `Author: ${meta.author} |
+         Created at: ${meta.createdAt || ''} |
+         Updated at: ${meta.updatedAt || ''}`
       )
   )
 );
@@ -39,11 +43,13 @@ TextBox.defaultProps = {
 };
 
 TextBox.propTypes = {
+  id:  PropTypes.number,
   text: PropTypes.string,
+  meta: PropTypes.object,
   author: PropTypes.string,
   createdAt: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.numbers
+    PropTypes.number
   ]),
   updatedAt: PropTypes.oneOfType([
     PropTypes.string,

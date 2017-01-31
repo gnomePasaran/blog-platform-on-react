@@ -1,19 +1,37 @@
 import React, { PropTypes } from 'react';
 
+import _ from 'lodash';
+
 import { Button } from 'semantic-ui-react';
 
-const Like = ({ blog, handlerLikes }) => (
-  React.createElement(
-    'div',
-    null,
-    `Likes ${blog.meta.count}`,
-    React.createElement(
-      Button
-      ,  { onClick: () => handlerLikes(blog.id) }
-      , 'Click me!'
-    )
-  )
-);
+class Like extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: props.blog.meta.count };
+
+    this.handleLikeClick = this.handleLikeClick.bind(this);
+  }
+
+  handleLikeClick() {
+    this.setState({ count: ++this.state.count });
+  }
+
+  render() {
+    const { count } = this.state;
+    return (
+      React.createElement(
+        'div',
+        null,
+        `Likes ${count}`,
+        React.createElement(
+          Button
+          ,  { onClick: () => this.handleLikeClick() }
+          , 'Click me!'
+        )
+      )
+    );
+  }
+}
 
 Like.defaultProps = {
   count: 0,

@@ -14,7 +14,7 @@ const BlogList = ({blogs, handlerLikes}) => (
           { key: blog.id },
           React.createElement(
             BlogItem,
-            { blog: blog, handlerLikes: handlerLikes }
+            { blog, handlerLikes }
           )
         )
       )
