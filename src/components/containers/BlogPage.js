@@ -1,15 +1,8 @@
 import React from 'react';
 
-import _ from 'lodash';
-
 import request from 'superagent';
 
-import BlogList from 'components/widgets/blog/BlogList';
-import PieChart from 'components/widgets/blog/PieChart';
-import Pagination from 'components/widgets/blog/elements/Pagination';
-import SearchForm from 'components/widgets/blog/SearchForm';
-
-import { Container, Grid } from 'semantic-ui-react';
+import BlogPageView from 'components/views/BlogPageView';
 
 class BlogPage extends React.Component {
   constructor(props) {
@@ -54,29 +47,11 @@ class BlogPage extends React.Component {
   render() {
     const { blogs } = this.state;
 
-    const likesChartData = _.map(blogs, (blog) => (
-      [blog.text, blog.meta.count]
-    ));
-
     const {activePage, pagesCount, blogsForRender} = this.paginationCounting();
+
     return (
-      <Container fluid={true}>
-        <Grid columns={2}>
-          <Grid.Column>
-            <Pagination activePage={activePage} pagesCount={pagesCount}
-                        paginationHandleClick={this.paginationHandleClick} />
-            <BlogList blogs={blogsForRender} />
-          </Grid.Column>
-          <Grid.Column>
-            <Grid.Row>
-              <SearchForm blogs={blogs}/>
-            </Grid.Row>
-            <Grid.Row>
-              <PieChart columns={likesChartData} />
-            </Grid.Row>
-          </Grid.Column>
-        </Grid>
-      </Container>
+      <BlogPageView blogs={blogs} activePage={activePage}
+        pagesCount={pagesCount} blogsForRender={blogsForRender} paginationHandleClick={this.paginationHandleClick} />
     );
   }
 }

@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
-import _ from 'lodash';
+import { filter } from 'lodash/collection';
 
-import SearchList from 'components/widgets/blog/elements/SearchList';
+import SearchList from 'components/views/SearchList';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class SearchForm extends React.Component {
 
   handleChange(e) {
     const rgxp = new RegExp(e.currentTarget.value, 'i');
-    const foundBlogs = _.filter(this.props.blogs,
+    const foundBlogs = filter(this.props.blogs,
       (blog) => {
         if (blog.text.search(rgxp) > 0)
           return [blog.id, blog.text];
@@ -24,13 +24,9 @@ class SearchForm extends React.Component {
   }
 
   render() {
+    const { foundBlogs } = this.state;
     return (
-      <div>
-        <input type="text" onChange={this.handleChange} />
-        <ul>
-          <SearchList foundBlogs={this.state.foundBlogs} />
-        </ul>
-      </div>
+      <SearchList foundBlogs={foundBlogs} handlerChange={this.handleChange} />
     );
   }
 }

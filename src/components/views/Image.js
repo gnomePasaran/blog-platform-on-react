@@ -1,14 +1,14 @@
-import { DOM, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-const Image = (props) => (
-  DOM.img({
-    src: props.src,
-    style: {
-      width: `${props.width}px`,
-      heigth: `${props.height}px`,
-    },
-    alt: props.alt
-  })
+const Image = ({ img }) => (
+  < img
+    src={img.src}
+    style={{
+      width: `${img.width}px`,
+      heigth: `${img.height}px`,
+    }}
+    alt={img.alt}
+  / >
 );
 
 Image.defaultProps = {
@@ -19,6 +19,7 @@ Image.defaultProps = {
 };
 
 Image.propTypes = {
+  img: PropTypes.object,
   src: PropTypes.string,
   width: PropTypes.oneOfType([
     PropTypes.string,

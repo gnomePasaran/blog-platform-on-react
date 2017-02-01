@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import { Item } from 'semantic-ui-react';
 
-import BlogItem from 'components/widgets/blog/BlogItem';
+import BlogItem from 'components/views/BlogItem';
 
 import request from 'superagent';
 

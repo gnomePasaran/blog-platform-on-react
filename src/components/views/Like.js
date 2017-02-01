@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
 
-import _ from 'lodash';
-
 import { Button } from 'semantic-ui-react';
 
 class Like extends React.Component {
@@ -19,16 +17,11 @@ class Like extends React.Component {
   render() {
     const { count } = this.state;
     return (
-      React.createElement(
-        'div',
-        null,
-        `Likes ${count}`,
-        React.createElement(
-          Button
-          ,  { onClick: () => this.handleLikeClick() }
-          , 'Click me!'
-        )
-      )
+      <div>{`Likes ${count}`}
+        <Button onClick={this.handleLikeClick}>
+          'Click me!'
+        </ Button>
+      </div>
     );
   }
 }

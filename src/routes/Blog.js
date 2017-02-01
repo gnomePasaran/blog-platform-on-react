@@ -1,9 +1,9 @@
-import MainLayout from 'components/layouts/MainLayout';
-import About      from 'components/About';
-import BlogPage   from 'components/BlogPage';
-import Post       from 'components/Post';
+import MainLayoutContainer from 'components/layouts/MainLayoutContainer';
+import About      from 'components/views/About';
+import BlogPage   from 'components/containers/BlogPage';
+import Post       from 'components/containers/Post';
 
-import { postsPath } from 'helpers/routes';
+import { postsAbout, postsPath } from 'helpers/routes';
 
 const Index = {
   path: '/',
@@ -16,12 +16,12 @@ const PostRoutes = {
 };
 
 const AboutRoutes = {
-  path: '/about',
+  path: postsAbout,
   component: About
 };
 
 export default {
-  component: MainLayout,
+  component: MainLayoutContainer,
   childRoutes: [
     Index,
     PostRoutes,

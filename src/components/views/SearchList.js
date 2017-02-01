@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 
-import _ from 'lodash';
+import { map } from 'lodash/collection';
 
 import Link from 'components/elements/Link';
 import { postsPath } from 'helpers/routes';
 
-const SearchList = ({ foundBlogs }) => {
-  const foundBlogsList = _.map(foundBlogs,
+const SearchList = ({ foundBlogs, handlerChange }) => {
+  const foundBlogsList = map(foundBlogs,
     (blog) => (
       <li key={blog.id}>
         <Link to={postsPath(blog.id)}>{blog.text}</Link>
@@ -15,9 +15,12 @@ const SearchList = ({ foundBlogs }) => {
   );
 
   return (
-    <ul>
-      {foundBlogsList}
-    </ul>
+    <div>
+      <input type="text" onChange={handlerChange} />
+      <ul>
+        {foundBlogsList}
+      </ul>
+    </div>
   );
 };
 
@@ -25,7 +28,8 @@ export default SearchList;
 
 SearchList.propTypes = {
   foundBlogs: PropTypes.oneOfType([
-    PropTypes.number,
+    PropTypes.array,
     PropTypes.bool
-  ])
+  ]),
+  handlerChange: PropTypes.func
 };

@@ -23,10 +23,7 @@ class PieChart extends React.Component {
 
   render() {
     return (
-      React.createElement(
-        'div',
-        { ref: 'chart'}
-      )
+      <div ref={'chart'} />
     );
   }
 }

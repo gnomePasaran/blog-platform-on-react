@@ -1,14 +1,12 @@
 import React, { PropTypes } from 'react';
 
-import { Button, Segment, Header, Container } from 'semantic-ui-react';
+import { Segment, Header, Container } from 'semantic-ui-react';
 import Link from 'components/elements/Link';
-
-import history from 'helpers/history';
 
 const MainLayout = (props) => (
   <Container>
     <Logo />
-    { props.location.pathname != '/' && <GoBackButton />}
+    { props.goBackButton }
     { props.children }
     <Footer />
   </Container>
@@ -16,14 +14,10 @@ const MainLayout = (props) => (
 
 MainLayout.propTypes = {
   children: PropTypes.node,
-  location: PropTypes.object
+  goBackButton: PropTypes.node
 };
 
 export default MainLayout;
-
-const GoBackButton = () => (
-  <Button onClick={() => history.goBack()}>Назад</Button>
-);
 
 const Logo = () => (
   <Segment>
