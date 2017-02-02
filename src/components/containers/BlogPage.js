@@ -4,6 +4,8 @@ import request from 'superagent';
 
 import BlogPageView from 'components/views/BlogPageView';
 
+import { POSTS_ON_THE_PAGE } from 'constants/static/Pagination';
+
 class BlogPage extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +37,7 @@ class BlogPage extends React.Component {
   }
 
   paginationCounting() {
-    const postsOnThePage = 3;
+    const postsOnThePage = POSTS_ON_THE_PAGE;
     const { activePage, blogs } = this.state;
     const pagesCount = Math.ceil(blogs.length / postsOnThePage);
     const blogsForRender = blogs

@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 
-import { Button } from 'semantic-ui-react';
+import Like from 'components/views/Post/elements/Like';
 
-class Like extends React.Component {
+class LikeContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { count: props.blog.meta.count };
+    this.state = { count: this.props.blog.meta.count };
 
     this.handleLikeClick = this.handleLikeClick.bind(this);
   }
@@ -17,20 +17,16 @@ class Like extends React.Component {
   render() {
     const { count } = this.state;
     return (
-      <div>{`Likes ${count}`}
-        <Button onClick={this.handleLikeClick}>
-          'Click me!'
-        </ Button>
-      </div>
+      <Like count={count} handlerLikes={this.handleLikeClick} />
     );
   }
 }
 
-Like.defaultProps = {
+LikeContainer.defaultProps = {
   count: 0,
 };
 
-Like.propTypes = {
+LikeContainer.propTypes = {
   blog: PropTypes.shape({
     id: PropTypes.numbers,
     meta: PropTypes.shape({
@@ -41,4 +37,4 @@ Like.propTypes = {
   handlerLikes: PropTypes.func
 };
 
-export default Like;
+export default LikeContainer;

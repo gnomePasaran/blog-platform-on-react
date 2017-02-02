@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+
 import ReactDOM from 'react-dom';
 
 import c3 from 'c3';
@@ -27,5 +28,9 @@ class PieChart extends React.Component {
     );
   }
 }
+
+PieChart.propTypes = {
+  columns: PropTypes.array
+};
 
 export default PieChart;

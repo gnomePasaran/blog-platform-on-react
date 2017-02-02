@@ -3,8 +3,9 @@ import React, { PropTypes } from 'react';
 const TextBox = ({ text, meta }) => (
   <span>
     <div>
-    {text}
-      {`Author: ${meta.author} | Created at: ${meta.createdAt || ''} | Updated at: ${meta.updatedAt || ''}`}
+      {text}
+      {`
+        Author: ${meta.author} | Created at: ${meta.createdAt || ''} | Updated at: ${meta.updatedAt || ''}`}
     </div>
   </span>
 );

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import { map } from 'lodash/collection';
 
-import BlogItem from 'components/views/BlogItem';
+import BlogItem from 'components/views/Post/widgets/BlogItem';
 
 const BlogList = ({ blogs, handlerLikes }) => (
   <ul>
@@ -14,10 +14,9 @@ BlogList.defaultProps = {
   blogs: []
 };
 
-BlogList.PropTypes = {
-  blogs: PropTypes.shape(
-    BlogItem.PropTypes
-  )
+BlogList.propTypes = {
+  blogs: PropTypes.array,
+  handlerLikes: PropTypes.func
 };
 
 export default BlogList;

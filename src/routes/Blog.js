@@ -1,5 +1,5 @@
 import MainLayoutContainer from 'components/layouts/MainLayoutContainer';
-import About      from 'components/views/About';
+import About      from 'components/containers/About';
 import BlogPage   from 'components/containers/BlogPage';
 import Post       from 'components/containers/Post';
 

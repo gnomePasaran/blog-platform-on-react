@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-import BlogList from 'components/containers/BlogList';
+import BlogList from 'components/views/Post/widgets/BlogList';
 import PieChartContainer from 'components/containers/PieChartContainer';
 import Pagination from 'components/views/Pagination';
-import SearchForm from 'components/views/SearchForm';
+import SearchForm from 'components/containers/SearchForm';
 
 import { Container, Grid } from 'semantic-ui-react';
 
@@ -26,5 +26,13 @@ const BlogPageView = ({ blogs, activePage, pagesCount, blogsForRender, paginatio
     </Grid>
   </Container>
 );
+
+BlogPageView.propTypes = {
+  blogs: PropTypes.array,
+  activePage: PropTypes.number,
+  pagesCount: PropTypes.number,
+  blogsForRender: PropTypes.array,
+  paginationHandleClick: PropTypes.func
+};
 
 export default BlogPageView;
