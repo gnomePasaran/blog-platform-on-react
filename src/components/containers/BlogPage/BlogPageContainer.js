@@ -4,6 +4,8 @@ import request from 'superagent';
 
 import BlogPageView from 'components/views/BlogPage';
 
+import { SERVER_PATH } from 'constants/Data';
+
 class BlogPage extends React.Component {
   constructor(props) {
     super(props);
@@ -20,14 +22,14 @@ class BlogPage extends React.Component {
   paginationHandleClick(activePage) {
     this.setState({ activePage });
     request.get(
-      `http://localhost:3001/posts/${activePage}`,
+      `${SERVER_PATH}/posts/${activePage}`,
       (err, res) => this.setState({ blogsOnPage: res.body })
     );
   }
 
   fetchPosts() {
     request.get(
-      'http://localhost:3001',
+      SERVER_PATH,
       {},
       (err, res) => this.setState({ blogs: res.body })
     );

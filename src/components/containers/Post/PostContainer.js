@@ -6,6 +6,7 @@ import BlogItem from 'components/views/widgets/BlogItem';
 
 import request from 'superagent';
 
+import { SERVER_PATH } from 'constants/Data';
 
 class Post extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Post extends React.Component {
 
   componentDidMount() {
     request
-      .get(`http://localhost:3001/post/${this.props.params.id}`)
+      .get(`${SERVER_PATH}/post/${this.props.params.id}`)
       .send()
       .end((err, res) => {
         this.setState({ blog: res.body });

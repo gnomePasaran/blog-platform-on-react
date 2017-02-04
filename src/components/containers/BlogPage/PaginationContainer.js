@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import Pagination from 'components/views/Pagination';
 
-import { POSTS_ON_THE_PAGE } from 'constants/static/Pagination';
+import { POSTS_ON_THE_PAGE } from 'constants/Data';
 
 class PaginationContainer extends React.Component {
   constructor(props) {
