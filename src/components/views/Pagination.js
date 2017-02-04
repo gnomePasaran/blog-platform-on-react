@@ -4,20 +4,20 @@ import { map } from 'lodash/collection';
 
 import { Menu } from 'semantic-ui-react';
 
-const Pagination = ({ pagesCount, activePage, paginationHandleClick }) => (
+const Pagination = ({ activePage, pagesCount, selectPage }) => (
   <Menu pagination>
     {
       map([...Array(pagesCount).keys()].map(x => ++x), (i) => (
-        <Menu.Item key={i} name={i.toString()} active={activePage === i} onClick={() => paginationHandleClick(i)} />
+        <Menu.Item key={i} name={i.toString()} active={activePage === i} onClick={() => selectPage(i)} />
       ))
     }
   </Menu>
 );
 
 Pagination.propTypes = {
-  pagesCount: PropTypes.number,
   activePage: PropTypes.number,
-  paginationHandleClick: PropTypes.func
+  pagesCount: PropTypes.number,
+  selectPage: PropTypes.func
 };
 
 export default Pagination;

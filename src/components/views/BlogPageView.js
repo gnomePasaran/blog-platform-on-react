@@ -1,19 +1,18 @@
 import React, { PropTypes } from 'react';
 
-import BlogList from 'components/views/Post/widgets/BlogList';
+import BlogList from 'components/views/widgets/BlogList';
 import PieChartContainer from 'components/containers/PieChartContainer';
-import Pagination from 'components/views/Pagination';
+import PaginationContainer from 'components/containers/PaginationContainer';
 import SearchForm from 'components/containers/SearchForm';
 
 import { Container, Grid } from 'semantic-ui-react';
 
-const BlogPageView = ({ blogs, activePage, pagesCount, blogsForRender, paginationHandleClick }) => (
-  <Container fluid={true}>
+const BlogPageView = ({ blogs, blogsOnPage, paginationHandleClick }) => (
+  <Container>
     <Grid columns={2}>
       <Grid.Column>
-        <Pagination activePage={activePage} pagesCount={pagesCount}
-                    paginationHandleClick={paginationHandleClick} />
-        <BlogList blogs={blogsForRender} />
+        <PaginationContainer blogs={blogs} paginationHandleClick={paginationHandleClick} />
+        <BlogList blogs={blogsOnPage} />
       </Grid.Column>
       <Grid.Column>
         <Grid.Row>
@@ -29,9 +28,7 @@ const BlogPageView = ({ blogs, activePage, pagesCount, blogsForRender, paginatio
 
 BlogPageView.propTypes = {
   blogs: PropTypes.array,
-  activePage: PropTypes.number,
-  pagesCount: PropTypes.number,
-  blogsForRender: PropTypes.array,
+  blogsOnPage: PropTypes.array,
   paginationHandleClick: PropTypes.func
 };
 

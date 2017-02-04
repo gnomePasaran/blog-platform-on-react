@@ -1,9 +1,9 @@
 import MainLayoutContainer from 'components/layouts/MainLayoutContainer';
-import About      from 'components/containers/About';
+import About      from 'components/views/About';
 import BlogPage   from 'components/containers/BlogPage';
 import Post       from 'components/containers/Post';
 
-import { postsAbout, postsPath } from 'helpers/routes';
+import { aboutPath, postsPath } from 'helpers/routes';
 
 const Index = {
   path: '/',
@@ -16,7 +16,7 @@ const PostRoutes = {
 };
 
 const AboutRoutes = {
-  path: postsAbout,
+  path: aboutPath(),
   component: About
 };
 

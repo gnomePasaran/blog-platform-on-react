@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import { map } from 'lodash/collection';
 
-import PieChart from 'components/views/Post/PieChart';
+import PieChart from 'components/views/PieChart';
 
 const PieChartContainer = ({ columns }) => {
   const likesChartData = map(columns, (column) => (

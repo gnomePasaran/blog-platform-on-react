@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import { map } from 'lodash/collection';
 
-import BlogItem from 'components/views/Post/widgets/BlogItem';
+import BlogItem from 'components/views/widgets/BlogItem';
 
 const BlogList = ({ blogs, handlerLikes }) => (
   <ul>

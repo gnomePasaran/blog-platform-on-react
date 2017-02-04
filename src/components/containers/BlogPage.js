@@ -4,27 +4,24 @@ import request from 'superagent';
 
 import BlogPageView from 'components/views/BlogPageView';
 
-import { POSTS_ON_THE_PAGE } from 'constants/static/Pagination';
-
 class BlogPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { blogs: [] };
+    this.state = { blogs: null };
 
     this.paginationHandleClick = this.paginationHandleClick.bind(this);
   }
 
   componentDidMount() {
     this.fetchPosts();
-    this.setState({ activePage: 1 });
+    this.paginationHandleClick(1);
   }
 
   paginationHandleClick(activePage) {
     this.setState({ activePage });
     request.get(
-      'http://localhost:3001',
-      { page: activePage },
-      (err, res) => this.setState({ blogs: res.body })
+      `http://localhost:3001/posts/${activePage}`,
+      (err, res) => this.setState({ blogsOnPage: res.body })
     );
   }
 
@@ -36,24 +33,10 @@ class BlogPage extends React.Component {
     );
   }
 
-  paginationCounting() {
-    const postsOnThePage = POSTS_ON_THE_PAGE;
-    const { activePage, blogs } = this.state;
-    const pagesCount = Math.ceil(blogs.length / postsOnThePage);
-    const blogsForRender = blogs
-      .slice((activePage - 1) * postsOnThePage, postsOnThePage * (activePage));
-
-    return { pagesCount, blogsForRender };
-  }
-
   render() {
-    const { blogs } = this.state;
-
-    const {activePage, pagesCount, blogsForRender} = this.paginationCounting();
-
+    const { blogs, blogsOnPage } = this.state;
     return (
-      <BlogPageView blogs={blogs} activePage={activePage}
-        pagesCount={pagesCount} blogsForRender={blogsForRender} paginationHandleClick={this.paginationHandleClick} />
+      <BlogPageView blogs={blogs} blogsOnPage={blogsOnPage} paginationHandleClick={this.paginationHandleClick} />
     );
   }
 }

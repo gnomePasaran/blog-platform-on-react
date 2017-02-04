@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import Like from 'components/views/Post/elements/Like';
+import Like from 'components/views/elements/Like';
 
 class LikeContainer extends React.Component {
   constructor(props) {
