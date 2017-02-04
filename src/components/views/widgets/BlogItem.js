@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import Image from 'components/views/elements/Image';
 import TextBox from 'components/views/elements/TextBox';
-import LikeContainer from 'components/containers/LikeContainer';
+import LikeContainer from 'components/containers/Like/LikeContainer';
 
 import Link from 'components/elements/Link';
 

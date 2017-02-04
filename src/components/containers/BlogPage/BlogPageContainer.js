@@ -2,7 +2,7 @@ import React from 'react';
 
 import request from 'superagent';
 
-import BlogPageView from 'components/views/BlogPageView';
+import BlogPageView from 'components/views/BlogPage';
 
 class BlogPage extends React.Component {
   constructor(props) {

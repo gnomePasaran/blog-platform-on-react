@@ -1,18 +1,18 @@
 import MainLayoutContainer from 'components/layouts/MainLayoutContainer';
-import About      from 'components/views/About';
-import BlogPage   from 'components/containers/BlogPage';
-import Post       from 'components/containers/Post';
+import About               from 'components/views/About';
+import BlogPageContainer   from 'components/containers/BlogPage/BlogPageContainer';
+import PostContainer       from 'components/containers/Post/PostContainer';
 
 import { aboutPath, postsPath } from 'helpers/routes';
 
 const Index = {
   path: '/',
-  component: BlogPage
+  component: BlogPageContainer
 };
 
 const PostRoutes = {
   path: postsPath(),
-  component: Post
+  component: PostContainer
 };
 
 const AboutRoutes = {

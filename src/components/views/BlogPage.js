@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
 import BlogList from 'components/views/widgets/BlogList';
-import PieChartContainer from 'components/containers/PieChartContainer';
-import PaginationContainer from 'components/containers/PaginationContainer';
-import SearchForm from 'components/containers/SearchForm';
+import PieChartContainer from 'components/containers/BlogPage/PieChartContainer';
+import PaginationContainer from 'components/containers/BlogPage/PaginationContainer';
+import SearchForm from 'components/containers/BlogPage/SearchForm';
 
 import { Container, Grid } from 'semantic-ui-react';
 
