@@ -4,9 +4,9 @@ import { map } from 'lodash/collection';
 
 import BlogItem from 'components/views/widgets/BlogItem';
 
-const BlogList = ({ blogs, handlerLikes }) => (
+const BlogList = ({ blogs/*, handlerLikes*/ }) => (
   <ul>
-    {map(blogs, (blog) => (<li key={blog.id}><BlogItem blog={blog} handlerLikes={handlerLikes} /></li>))}
+    {map(blogs, (blog) => (<li key={blog.id}><BlogItem blog={blog} /*handlerLikes={handlerLikes}*/ /></li>))}
   </ul>
 );
 

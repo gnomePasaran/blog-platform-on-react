@@ -7,29 +7,26 @@ import SearchForm from 'components/containers/BlogPage/SearchForm';
 
 import { Container, Grid } from 'semantic-ui-react';
 
-const BlogPageView = ({ blogs, blogsOnPage, paginationHandleClick }) => (
+const BlogPage = ({ items }) => (
   <Container>
     <Grid columns={2}>
       <Grid.Column>
-        <PaginationContainer blogs={blogs} paginationHandleClick={paginationHandleClick} />
-        <BlogList blogs={blogsOnPage} />
+        <BlogList blogs={items} />
       </Grid.Column>
       <Grid.Column>
         <Grid.Row>
-          <SearchForm blogs={blogs}/>
+          <SearchForm blogs={items}/>
         </Grid.Row>
         <Grid.Row>
-          <PieChartContainer columns={blogs} />
+          <PieChartContainer columns={items} />
         </Grid.Row>
       </Grid.Column>
     </Grid>
   </Container>
 );
 
-BlogPageView.propTypes = {
-  blogs: PropTypes.array,
-  blogsOnPage: PropTypes.array,
-  paginationHandleClick: PropTypes.func
+BlogPage.propTypes = {
+  items: PropTypes.array,
 };
 
-export default BlogPageView;
+export default BlogPage;
