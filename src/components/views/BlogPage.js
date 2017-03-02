@@ -2,15 +2,16 @@ import React, { PropTypes } from 'react';
 
 import BlogList from 'components/views/widgets/BlogList';
 import PieChartContainer from 'components/containers/BlogPage/PieChartContainer';
-import PaginationContainer from 'components/containers/BlogPage/PaginationContainer';
+import Pagination from 'components/views/Pagination';
 import SearchForm from 'components/containers/BlogPage/SearchForm';
 
 import { Container, Grid } from 'semantic-ui-react';
 
-const BlogPage = ({ items }) => (
+const BlogPage = ({ items, changePage }) => (
   <Container>
     <Grid columns={2}>
       <Grid.Column>
+        <Pagination activePage={1} pagesCount={5} selectPage={changePage} />
         <BlogList blogs={items} />
       </Grid.Column>
       <Grid.Column>

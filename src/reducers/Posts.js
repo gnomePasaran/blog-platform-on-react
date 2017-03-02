@@ -16,6 +16,8 @@ export default function(state = initialState, action) {
       return assign({}, initialState, { error: true });
     case types.FETCH_POSTS_SUCCESS:
       return assign({}, initialState, { entries: action.response });
+    case 'CHANGE_PAGE':
+      return state, console.log(action.currentPage)
     default:
       return state;
   }
