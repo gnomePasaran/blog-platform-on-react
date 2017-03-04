@@ -6,4 +6,4 @@ import post from './Post';
 export default combineReducers({
   posts,
   post
-})
+});
