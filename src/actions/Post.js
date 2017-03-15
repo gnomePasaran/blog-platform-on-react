@@ -16,3 +16,18 @@ export function fetchPost(id) {
     }
   };
 }
+
+export function createPostLike(id) {
+  return {
+    [API_CALL]: {
+      endpoint: `/post/${id}/like`,
+      method: 'POST',
+      query: {},
+      types: [
+        types.CREATE_POST_LIKE_REQUEST,
+        types.CREATE_POST_LIKE_SUCCESS,
+        types.CREATE_POST_LIKE_ERROR
+      ]
+    }
+  };
+}

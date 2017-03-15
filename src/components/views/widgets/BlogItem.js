@@ -2,17 +2,17 @@ import React, { PropTypes } from 'react';
 
 import Image from 'components/views/elements/Image';
 import TextBox from 'components/views/elements/TextBox';
-import LikeContainer from 'components/containers/Like/LikeContainer';
+import Like from 'components/views/elements/Like';
 
 import Link from 'components/elements/Link';
 
-import { postsPath } from 'helpers/routes';
+import { postPath } from 'helpers/routes';
 
-const BlogItem = (props) => (
+const BlogItem = ({ blog, handleLikeClick }) => (
   <div>
-    <Image img={props.blog.img} />
-    <TextBox meta={props.blog.meta} text={ <Link to={postsPath(props.blog.id)}>{props.blog.text}</Link> } />
-    <LikeContainer blog={props.blog} />
+    <Image img={blog.img} />
+    <TextBox meta={blog.meta} text={ <Link to={postPath(blog.id) }>{blog.text}</Link> } />
+    <Like blog={blog} handleLikeClick={handleLikeClick} />
   </div>
 );
 

@@ -3,7 +3,7 @@ import About               from 'components/views/About';
 import PostsContainer      from 'containers/PostsContainer';
 import PostContainer       from 'containers/PostContainer';
 
-import { aboutPath, postsPath } from 'helpers/routes';
+import { aboutPath, postPath } from 'helpers/routes';
 
 import { fetchPosts } from 'actions/Posts';
 import { fetchPost } from 'actions/Post';
@@ -17,7 +17,7 @@ const Index = {
 };
 
 const PostRoutes = {
-  path: postsPath(),
+  path: postPath(),
   component: PostContainer,
   prepareData: (store, query, params) => {
     store.dispatch(fetchPost(params.id));
