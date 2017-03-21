@@ -16,7 +16,7 @@ Like.defaultProps = {
 };
 
 Like.propTypes = {
-  count: PropTypes.number,
+  blog: PropTypes.object,
   handleLikeClick: PropTypes.func
 };
 

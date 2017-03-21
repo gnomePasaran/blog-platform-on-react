@@ -11,6 +11,9 @@ const PaginationContainer = ({ activePage, itemsCount, itemsOnPage, handlePageSe
 };
 
 PaginationContainer.propTypes = {
+  activePage: PropTypes.number,
+  itemsCount: PropTypes.number,
+  itemsOnPage: PropTypes.number,
   handlePageSelect: PropTypes.func
 };
 

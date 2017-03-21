@@ -26,7 +26,7 @@ BlogItem.defaultProps = {
 
 BlogItem.propTypes = {
   blog: PropTypes.object,
-  handlerLikes: PropTypes.func
+  handleLikeClick: PropTypes.func
 };
 
 export default BlogItem;
