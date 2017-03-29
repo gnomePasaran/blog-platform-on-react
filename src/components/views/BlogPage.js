@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 
 import BlogList from 'components/views/widgets/BlogList';
-import PieChartContainer from 'components/containers/BlogPage/PieChartContainer';
+// import PieChartContainer from 'components/containers/BlogPage/PieChartContainer';
+// <PieChartContainer columns={items} />
 import Pagination from 'containers/Pagination';
 import SearchForm from 'containers/Search';
 
@@ -19,7 +20,6 @@ const BlogPage = ({ items, location, handleLikeClick }) => (
           <SearchForm blogs={items} />
         </Grid.Row>
         <Grid.Row>
-          <PieChartContainer columns={items} />
         </Grid.Row>
       </Grid.Column>
     </Grid>
