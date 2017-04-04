@@ -1,13 +1,18 @@
 import React, { PropTypes } from 'react';
 
+import Helmet from 'react-helmet';
+
 import { Item } from 'semantic-ui-react';
 
 import BlogItem from 'components/views/widgets/BlogItem';
 
 const Post = ({ item, handleLikeClick }) => (
-  <Item.Group>
-    { item && <BlogItem blog={item} handleLikeClick={handleLikeClick} /> }
-  </Item.Group>
+  <div>
+    <Item.Group>
+      { item && <BlogItem blog={item} handleLikeClick={handleLikeClick} /> }
+    </Item.Group>
+    {item && <Helmet title={item.text} />}
+  </div>
 );
 
 Post.propTypes = {

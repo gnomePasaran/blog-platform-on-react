@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Post from 'components/containers/Post/Post';
+import Post from 'components/views/Post';
 
 import { createPostLike } from 'actions/Post';
 

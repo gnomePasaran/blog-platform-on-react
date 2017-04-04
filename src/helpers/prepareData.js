@@ -5,7 +5,6 @@ import { map } from 'lodash/collection';
 
 export default function(store, state) {
   const { location, params, routes } = state;
-  if (!location) return;
 
   const query = parse(location.search.substr(1));
 
