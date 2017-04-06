@@ -19,7 +19,7 @@ export default (req, res) => {
     if (error) return res.sendStatus(500);
 
     if (redirectLocation) {
-      res.redirect(redirectLocation.pathname + redirectLocation.search);
+      res.redirect(301, redirectLocation.pathname + redirectLocation.search);
       return;
     }
 
@@ -43,6 +43,12 @@ export default (req, res) => {
         'index',
         { initialState, content, head }
       );
+    }, (error) => {
+      if (error) {
+        res.sendStatus(500);
+      } else {
+        res.sendStatus(404);
+      }
     });
   });
 };
