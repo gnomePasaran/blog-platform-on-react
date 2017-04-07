@@ -10,4 +10,8 @@ const stateToProps = (state) => ({
   error: state.posts.error
 });
 
-export default connect(stateToProps, { handleLikeClick: createPostLike })(Index);
+const actionsToProps = (dispatch) => ({
+  handleLikeClick: (id) => dispatch(createPostLike(id))
+});
+
+export default connect(stateToProps, actionsToProps)(Index);
