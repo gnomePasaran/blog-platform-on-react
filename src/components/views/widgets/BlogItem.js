@@ -11,8 +11,8 @@ import { postPath } from 'helpers/routes';
 const BlogItem = ({ blog, handleLikeClick }) => (
   <div>
     <Image img={blog.img} />
-    <TextBox meta={blog.meta} text={ <Link to={postPath(blog.id) }>{blog.text}</Link> } />
-    <Like blog={blog} handleLikeClick={handleLikeClick} />
+    <TextBox meta={blog.meta} text={ <Link to={postPath(blog.id)}>{blog.text}</Link> } />
+    <Like id={blog.id} count={blog.meta.count} handleLikeClick={handleLikeClick} />
   </div>
 );
 
