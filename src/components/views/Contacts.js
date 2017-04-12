@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-import { assign, mapValues } from 'lodash/object';
+import { assign, set } from 'lodash/object';
 
 import classNames from 'classnames';
 
@@ -8,59 +8,81 @@ class Contacts extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { errors: {} };
-    this.form = {};
+    this.state = {
+      form: {
+        values: {
+          fullName: '',
+          email: '',
+          message: ''
+        },
+        errors: {}
+      }
+    };
+
     this.onSubmit = this.onSubmit.bind(this);
-    this.generateRef = this.generateRef.bind(this);
   }
 
   onSubmit(e) {
     e.preventDefault();
-
-    this.setState({ errors: {} });
-
-    const values = mapValues(this.form, 'value');
-
-    if (!values.email || values.email.length < 3)
-      this.setState(assign(
-        {},
-        this.state,
-        { errors: assign({}, this.state.errors, { email: true }) }
-      ));
-
-    alert(JSON.stringify(values));
+    alert(JSON.stringify(this.state.form.values));
   }
 
-  generateRef(fieldName) {
-    return (input) => { this.form[fieldName] = input; };
+  clearErrors(fieldName) {
+    this.setState(set(
+      assign({}, this.state),
+      ['form','errors', fieldName],
+      false
+    ));
+  }
+
+  onChange(fieldName) {
+    return (e) => {
+      switch (fieldName) {
+        case 'email':
+          this.clearErrors('email');
+          if (e.target.value.length < 3)
+            this.setState(set(
+              assign({}, this.state),
+              ['form', 'errors', 'email'],
+              true
+            ));
+          break;
+      }
+
+      this.setState(set(
+          assign({}, this.state),
+          ['form', 'values', fieldName],
+          e.target.value
+      ));
+    };
   }
 
   render() {
+    const { fullName, email, message } = this.state.form.values;
     return (
       <div>
         <h1>Contacts</h1>
-        <form className="ui form" onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} className="ui form">
           <Text
-            label="Full name"
             name="fullName"
-            fieldRef={this.generateRef('fullName')}
+            value={fullName}
+            onChange={this.onChange('fullName')}
+            label="Full name"
           />
           <Text
-            label="Email"
             name="email"
-            error={this.state.errors.email}
-            fieldRef={this.generateRef('email')}
+            value={email}
+            onChange={this.onChange('email')}
+            error={this.state.form.errors.email}
+            label="Email"
           />
           <TextArea
-            label="Message"
             name="message"
-            fieldRef={this.generateRef('message')}
+            value={message}
+            onChange={this.onChange('message')}
+            label="Message"
           />
-          <input
-            className="ui button primary"
-            type="submit"
-            value="submit"
-          />
+          <input type="submit" value="Submit" className="ui button primary" />
         </form>
       </div>
     );
@@ -69,36 +91,30 @@ class Contacts extends React.Component {
 
 export default Contacts;
 
-class Text extends React.Component {
-  render() {
-    const { label, name, fieldRef, error } = this.props;
-    return (
-      <div className={classNames('ui field', { error })}>
-        <label htmlFor={name}>{label}</label>
-        <input
-          className="ui input"
-          id={name}
-          name={name}
-          ref={fieldRef}
-        />
-      </div>
-    );
-  }
-}
+const Text = ({ name, value, onChange, label, error }) => (
+  <div className={classNames('ui field', { error })}>
+    <label htmlFor={name}>{label}:</label>
+    <input
+      name={name}
+      id={name}
+      className="ui field"
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
+  </div>
+);
 
-class TextArea extends React.Component {
-  render() {
-    const { label, name, fieldRef } = this.props;
-    return (
-      <div className="ui field">
-        <label htmlFor={name}>{label}</label>
-        <textarea
-          className="ui input"
-          id={name}
-          name={name}
-          ref={fieldRef}
-        />
-      </div>
-    );
-  }
-}
+const TextArea = ({ name, value, onChange, label }) => (
+  <div className="ui field">
+    <label htmlFor={name}>{label}:</label>
+    <textarea
+      name={name}
+      id={name}
+      className="ui field"
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
+  </div>
+);
