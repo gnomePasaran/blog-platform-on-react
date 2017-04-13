@@ -2,9 +2,11 @@ import MainLayoutContainer from 'components/layouts/MainLayoutContainer';
 import About               from 'components/views/About';
 import PostsContainer      from 'containers/PostsContainer';
 import PostContainer       from 'containers/PostContainer';
+import Contacts            from 'components/views/Contacts';
+import EditPostView        from 'components/views/Edit';
 import initialLoad         from 'helpers/initialLoad';
 
-import { aboutPath, postPath } from 'helpers/routes';
+import { aboutPath, contactPath, postPath, editPostPath } from 'helpers/routes';
 
 import { fetchPosts } from 'actions/Posts';
 import { fetchPost } from 'actions/Post';
@@ -31,11 +33,17 @@ const AboutRoutes = {
   component: About
 };
 
+const ContactRoutes = {
+  path: contactPath(),
+  component: Contacts
+};
+
 export default {
   component: MainLayoutContainer,
   childRoutes: [
     Index,
     PostRoutes,
-    AboutRoutes
+    AboutRoutes,
+    ContactRoutes
   ]
 };
