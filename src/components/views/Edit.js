@@ -1,24 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
 
 import classNames from 'classnames';
 
-const validate = (values) => {
-  const errors = {};
-  // if (values.title.length < 1)
-  //   errors.title = "Title's length is longer then 1 symbols.";
-
-  return errors;
-};
-
-const warn = (values) => {
-  const warnings = {};
-  if (values.title.length < 5)
-    warnings.title = "Recommendantly title's length is longer then 5 symbols.";
-
-  return warnings;
-};
+// const validate = (values) => {
+//   const errors = {};
+//   // if (values.title.length < 1)
+//   //   errors.title = "Title's length is longer then 1 symbols.";
+//
+//   return errors;
+// };
+//
+// const warn = (values) => {
+//   const warnings = {};
+//   if (values.title.length < 5)
+//     warnings.title = "Recommendantly title's length is longer then 5 symbols.";
+//
+//   return warnings;
+// };
 
 const renderFiels = ({input, label, type, meta: { touched, error, warning } }) => (
   <div className={classNames('ui field', { error })}>
@@ -51,6 +51,17 @@ const sleep = (ms) => (
   )
 );
 
+const submit = (values) => (
+  sleep(1000).then(() => {
+    if (values.title.length < 5) {
+      throw new SubmissionError({ title: "Recommendantly title's length is longer then 5 symbols."});
+    } else {
+      alert(JSON.stringify(values));
+    }
+  })
+);
+
+
 export default connect(
   (state) => ({
     initialValues: {
@@ -61,7 +72,7 @@ export default connect(
   })
 )(reduxForm({
   form: 'editPost',
-  validate,
-  warn,
-  onSubmit: (values) => (alert(JSON.stringify(values)))
+  // validate,
+  // warn,
+  onSubmit: submit
 })(EditPostView));
