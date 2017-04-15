@@ -19,7 +19,7 @@ const BlogPage = ({ items, location, handleLikeClick }) => (
           <SearchForm blogs={items} />
         </Grid.Row>
         <Grid.Row>
-          <PieChartContainer columns={items} />
+        <PieChartContainer columns={items} />
         </Grid.Row>
       </Grid.Column>
     </Grid>

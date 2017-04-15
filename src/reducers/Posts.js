@@ -8,12 +8,10 @@ const initialState = {
   entries: []
 };
 
-const updatedItems = (entries, response) => {
+const updatedItems = (entries, { id, meta }) => {
   if (entries.length < 1) return entries;
 
-  const { id, meta } = response;
   const newEntries = cloneDeep(entries);
-
   newEntries.items
     .find(item => item.id === id)
     .meta = meta;
@@ -29,7 +27,7 @@ export default function(state = initialState, action) {
       return assign({}, initialState, { error: true });
     case types.FETCH_POSTS_SUCCESS:
       return assign({}, initialState, { entries: action.response });
-    case 'CREATE_POST_LIKE_SUCCESS':
+    case types.CREATE_POST_LIKE_SUCCESS:
       return assign({}, initialState, { entries: updatedItems(state.entries, action.response) });
     default:
       return state;

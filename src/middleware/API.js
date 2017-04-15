@@ -16,11 +16,10 @@ function APICall({ endpoint, method, query, payload }) {
     if (payload)
       r = r.send(payload);
 
-    r.end((error, data) => (
-      error ?
-        reject(error)
-      : resolve(data.body)
-    ));
+    r.then(
+      (data) => resolve(data.body),
+      (error) => reject(error)
+    );
   });
 }
 

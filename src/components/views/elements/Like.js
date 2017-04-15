@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react';
 
 import { Button } from 'semantic-ui-react';
 
-const Like = ({ blog, handleLikeClick }) => (
+const Like = ({ id, count, handleLikeClick }) => (
   <div>
-    {`Likes ${blog.meta.count}`}
-    <Button onClick={() => handleLikeClick(blog.id)}>
+    {`Likes ${count}`}
+    <Button onClick={() => handleLikeClick(id)}>
       'Click me!'
     </ Button>
   </div>
@@ -16,7 +16,8 @@ Like.defaultProps = {
 };
 
 Like.propTypes = {
-  blog: PropTypes.object,
+  id: PropTypes.number,
+  count: PropTypes.number,
   handleLikeClick: PropTypes.func
 };
 

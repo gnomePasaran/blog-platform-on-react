@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Posts from 'components/views/BlogPage';
+import Index from 'components/views/Index';
 
 import { createPostLike } from 'actions/Post';
 
@@ -10,4 +10,8 @@ const stateToProps = (state) => ({
   error: state.posts.error
 });
 
-export default connect(stateToProps, { handleLikeClick: createPostLike })(Posts);
+const actionsToProps = (dispatch) => ({
+  handleLikeClick: (id) => dispatch(createPostLike(id))
+});
+
+export default connect(stateToProps, actionsToProps)(Index);

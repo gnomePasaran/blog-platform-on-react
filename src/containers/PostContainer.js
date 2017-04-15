@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Post from 'components/containers/Post/Post';
+import Post from 'components/views/Post';
 
 import { createPostLike } from 'actions/Post';
 
@@ -10,4 +10,8 @@ const stateToProps = (state) => ({
   error: state.post.error
 });
 
-export default connect(stateToProps, { handleLikeClick: createPostLike })(Post);
+const actionsToProps = (dispatch) => ({
+  handleLikeClick: (id) => dispatch(createPostLike(id))
+});
+
+export default connect(stateToProps, actionsToProps)(Post);
