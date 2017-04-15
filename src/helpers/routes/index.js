@@ -1,2 +1,2 @@
-export const postsPath = (id = ':id') => `/posts/${id}`;
+export const postPath = (id = ':id') => `/post/${id}`;
 export const aboutPath = () => '/about';

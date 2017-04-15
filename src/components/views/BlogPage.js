@@ -2,20 +2,21 @@ import React, { PropTypes } from 'react';
 
 import BlogList from 'components/views/widgets/BlogList';
 import PieChartContainer from 'components/containers/BlogPage/PieChartContainer';
-import PaginationContainer from 'components/containers/BlogPage/PaginationContainer';
-import SearchForm from 'components/containers/BlogPage/SearchForm';
+import Pagination from 'containers/Pagination';
+import SearchForm from 'containers/Search';
 
 import { Container, Grid } from 'semantic-ui-react';
 
-const BlogPage = ({ items }) => (
+const BlogPage = ({ items, location, handleLikeClick }) => (
   <Container>
     <Grid columns={2}>
       <Grid.Column>
-        <BlogList blogs={items} />
+        <Pagination location={location} />
+        <BlogList blogs={items} handleLikeClick={handleLikeClick} />
       </Grid.Column>
       <Grid.Column>
         <Grid.Row>
-          <SearchForm blogs={items}/>
+          <SearchForm blogs={items} />
         </Grid.Row>
         <Grid.Row>
           <PieChartContainer columns={items} />
@@ -27,6 +28,8 @@ const BlogPage = ({ items }) => (
 
 BlogPage.propTypes = {
   items: PropTypes.array,
+  location: PropTypes.object,
+  handleLikeClick: PropTypes.func
 };
 
 export default BlogPage;

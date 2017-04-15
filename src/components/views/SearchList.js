@@ -3,26 +3,39 @@ import React, { PropTypes } from 'react';
 import { map } from 'lodash/collection';
 
 import Link from 'components/elements/Link';
-import { postsPath } from 'helpers/routes';
+import { postPath } from 'helpers/routes';
 
-const SearchList = ({ foundBlogs, handlerChange }) => {
-  const foundBlogsList = map(foundBlogs,
-    (blog) => (
-      <li key={blog.id}>
-        <Link to={postsPath(blog.id)}>{blog.text}</Link>
-      </li>
-    )
-  );
+class SearchList extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div>
-      <input type="text" onChange={handlerChange} />
-      <ul>
-        {foundBlogsList}
-      </ul>
-    </div>
-  );
-};
+    this.handleSearchChange = this.handleSearchChange.bind(this);
+  }
+
+  handleSearchChange(e) {
+    this.props.processSearch(e.currentTarget.value);
+    this.props.changeSearchQuery(e.currentTarget.value);
+  }
+
+  render() {
+    const foundBlogsList = map(this.props.results,
+      (blog) => (
+        <li key={blog.id}>
+          <Link to={postPath(blog.id)}>{blog.text}</Link>
+        </li>
+      )
+    );
+
+    return (
+      <div>
+        <input type="text" onChange={this.handleSearchChange} />
+        <ul>
+          {foundBlogsList}
+        </ul>
+      </div>
+    );
+  }
+}
 
 export default SearchList;
 
@@ -31,5 +44,7 @@ SearchList.propTypes = {
     PropTypes.array,
     PropTypes.bool
   ]),
-  handlerChange: PropTypes.func
+  processSearch: PropTypes.func,
+  changeSearchQuery: PropTypes.func,
+  results: PropTypes.array
 };
