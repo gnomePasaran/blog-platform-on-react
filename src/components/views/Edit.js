@@ -34,8 +34,19 @@ const EditPostView = ({ handleSubmit, pristine, submitting, reset }) => (
 );
 
 
-const submit = (values) => (
-  //?? что должно быть здесь?
+const submit = (values, dispatch, props) => (
+  props.updatePost(props.params.id, values).then((response) => {
+    if (response.error) {
+      throw new SubmissionError(response.error);
+    }
+  })
+);
+
+const asyncValidate = (values, dispatch, props) => (
+  props.updatePost(props.params.id, values).then((response) => {
+    if (response.error)
+      throw response.error;
+  })
 );
 
 const stateToProps = (state) => ({
@@ -51,9 +62,10 @@ const actionsToProps = (dispatch) => ({
 });
 
 export default connect(
-  stateToProps,
-  actionsToProps
+  stateToProps
+  , actionsToProps
 )(reduxForm({
   form: 'editPost',
+  asyncValidate,
   onSubmit: submit
 })(EditPostView));
