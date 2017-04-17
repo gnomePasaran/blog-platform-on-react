@@ -28,15 +28,6 @@ const PostRoutes = {
   }
 };
 
-const EditPostRoute = {
-  path: editPostPath(),
-  component: EditPostView,
-  prepareData: (store, query, params) => {
-    if (initialLoad()) return;
-    return store.dispatch(fetchPost(params.id));
-  }
-};
-
 const AboutRoutes = {
   path: aboutPath(),
   component: About
@@ -52,7 +43,6 @@ export default {
   childRoutes: [
     Index,
     PostRoutes,
-    EditPostRoute,
     AboutRoutes,
     ContactRoutes
   ]
