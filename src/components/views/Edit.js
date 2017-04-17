@@ -2,16 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 
-import { flowRight } from 'lodash/util';
-
-import { editPost } from 'actions/EditPost';
-
 import classNames from 'classnames';
 
-const renderFiels = ({ input, label, type, name, meta: { touched, error, warning } }) => (
+// const validate = (values) => {
+//   const errors = {};
+//   // if (values.title.length < 1)
+//   //   errors.title = "Title's length is longer then 1 symbols.";
+//
+//   return errors;
+// };
+//
+// const warn = (values) => {
+//   const warnings = {};
+//   if (values.title.length < 5)
+//     warnings.title = "Recommendantly title's length is longer then 5 symbols.";
+//
+//   return warnings;
+// };
+
+const renderFiels = ({input, label, type, meta: { touched, error, warning } }) => (
   <div className={classNames('ui field', { error })}>
     <label>{label}:</label>
-    <input className="ui input" {...input} type={type} name={name} />
+    <input className="ui input" {...input} type={type} name="title" />
     {touched && (error && (
       <div className="ui red label">{error}</div>
     ) || (warning && (
@@ -33,27 +45,34 @@ const EditPostView = ({ handleSubmit, pristine, submitting, reset }) => (
   </div>
 );
 
-
-const submit = (values) => (
-  //?? что должно быть здесь?
+const sleep = (ms) => (
+  new Promise(
+    (resolve) => (setTimeout(resolve, ms))
+  )
 );
 
-const stateToProps = (state) => ({
-  initialValues: {
-    title: state.post.entry.text,
-    createdAt: state.post.entry.meta.createdAt,
-    author: state.post.entry.meta.author,
-  }
-});
+const submit = (values) => (
+  sleep(1000).then(() => {
+    if (values.title.length < 5) {
+      throw new SubmissionError({ title: "Recommendantly title's length is longer then 5 symbols."});
+    } else {
+      alert(JSON.stringify(values));
+    }
+  })
+);
 
-const actionsToProps = (dispatch) => ({
-  updatePost: flowRight(dispatch, editPost)
-});
 
 export default connect(
-  stateToProps,
-  actionsToProps
+  (state) => ({
+    initialValues: {
+      title: state.post.entry.text,
+      createdAt: state.post.entry.meta.createdAt,
+      author: state.post.entry.meta.author,
+    }
+  })
 )(reduxForm({
   form: 'editPost',
+  // validate,
+  // warn,
   onSubmit: submit
 })(EditPostView));
