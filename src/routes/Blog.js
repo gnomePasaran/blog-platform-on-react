@@ -3,7 +3,7 @@ import About               from 'components/views/About';
 import PostsContainer      from 'containers/PostsContainer';
 import PostContainer       from 'containers/PostContainer';
 import Contacts            from 'components/views/Contacts';
-import EditPostView        from 'components/views/Edit';
+import EditPostContainer   from 'containers/EditPostContainer';
 import initialLoad         from 'helpers/initialLoad';
 
 import { aboutPath, contactPath, postPath, editPostPath } from 'helpers/routes';
@@ -24,13 +24,14 @@ const PostRoutes = {
   path: postPath(),
   component: PostContainer,
   prepareData: (store, query, params) => {
+    if (initialLoad()) return;
     return store.dispatch(fetchPost(params.id));
   }
 };
 
 const EditPostRoute = {
   path: editPostPath(),
-  component: EditPostView,
+  component: EditPostContainer,
   prepareData: (store, query, params) => {
     if (initialLoad()) return;
     return store.dispatch(fetchPost(params.id));
