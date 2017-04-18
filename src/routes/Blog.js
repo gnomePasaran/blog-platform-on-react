@@ -10,6 +10,7 @@ import { aboutPath, contactPath, postPath, editPostPath } from 'helpers/routes';
 
 import { fetchPosts } from 'actions/Posts';
 import { fetchPost } from 'actions/Post';
+import { fetchComments } from 'actions/Comments';
 
 const Index = {
   path: '/',
@@ -25,7 +26,9 @@ const PostRoutes = {
   component: PostContainer,
   prepareData: (store, query, params) => {
     if (initialLoad()) return;
-    return store.dispatch(fetchPost(params.id));
+    store.dispatch(fetchPost(params.id));
+
+    return store.dispatch(fetchComments(params.id));
   }
 };
 
