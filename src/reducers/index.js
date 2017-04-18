@@ -5,11 +5,13 @@ import posts from './Posts';
 import post from './Post';
 import search from './Search';
 import editPost from './EditPost';
+import comments from './Comments';
 
 export default combineReducers({
   posts,
   post,
   search,
   form: formReducer,
-  editPost
+  editPost,
+  comments
 });
