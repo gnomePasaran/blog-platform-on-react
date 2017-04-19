@@ -16,3 +16,19 @@ export function fetchComments(id) {
     }
   };
 }
+
+export function createComment(id, values) {
+  return {
+    [API_CALL]: {
+      endpoint: `/post/${id}/comments/new`,
+      method: 'POST',
+      query: {},
+      payload: values,
+      types: [
+        types.CREATE_COMMENT_REQUEST,
+        types.CREATE_COMMENT_SUCCESS,
+        types.CREATE_COMMENT_ERROR
+      ]
+    }
+  };
+}
