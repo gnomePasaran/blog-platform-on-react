@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import DatePicker from 'components/views/elements/Form/DatePicker';
 import formatDate from 'helpers/formatDate';
 import RenderField from 'components/views/elements/Form/RenderFields';
@@ -16,3 +16,7 @@ const InputField = (props) => (
 );
 
 export default InputField;
+
+InputField.propTypes = {
+  input: PropTypes.object,
+};

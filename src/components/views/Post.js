@@ -30,6 +30,8 @@ const Post = ({ item, handleLikeClick, comments, params }) => (
 
 Post.propTypes = {
   item: PropTypes.object,
+  comments: PropTypes.object,
+  params: PropTypes.object,
   handleLikeClick: PropTypes.func
 };
 

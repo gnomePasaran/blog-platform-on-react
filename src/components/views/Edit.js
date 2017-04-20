@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+
 import { Field } from 'redux-form';
 
 import DateField from 'components/views/elements/Form/DateField';
@@ -21,3 +22,10 @@ const EditPostView = ({ handleSubmit, pristine, submitting, reset }) => (
 );
 
 export default EditPostView;
+
+EditPostView.propTypes = {
+  pristine: PropTypes.bool,
+  submitting: PropTypes.bool,
+  reset: PropTypes.func,
+  handleSubmit: PropTypes.func
+};
