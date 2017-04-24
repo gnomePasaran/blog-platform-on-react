@@ -1,14 +1,12 @@
 import React, { PropTypes } from 'react';
 
+import { List } from 'semantic-ui-react';
+
 const TextBox = ({ text, phone }) => (
-  <div>
-    <div>
-      {text}
-    </div>
-    <div>
-      {`Phone: ${phone}`}
-    </div>
-  </div>
+  <List.Content>
+    <List.Header>{text}</List.Header>
+    <List.Description>{`Phone: ${phone}`}</List.Description>
+  </List.Content>
 );
 
 TextBox.defaultProps = {

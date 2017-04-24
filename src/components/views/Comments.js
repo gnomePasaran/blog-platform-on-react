@@ -2,22 +2,28 @@ import React, { PropTypes } from 'react';
 
 import { map } from 'lodash/collection';
 
-import { Loader } from 'semantic-ui-react';
-
 import Comment from 'components/views/elements/Comment';
 
+import { Header, Icon, Loader, List } from 'semantic-ui-react';
+
 const Comments = ({ comments, isFetching, error }) => (
-  <div>
-    <ul>
-      { isFetching && Spinner() || comments.length > 0 && map(comments,
-        (comment) => (
-          <li key={comment.id}>
-            <Comment text={comment.text} phone={comment.phone} />
-          </li>
-        )
-      )}
-    </ul>
-  </div>
+  <List divided relaxed>
+    <Header as='h2'>
+      <Icon name='comments' className='blue' />
+      <Header.Content>
+        Comments
+      </Header.Content>
+    </Header>
+
+    { isFetching && Spinner() || comments.length > 0 && map(comments,
+      (comment) => (
+        <List.Item key={comment.id}>
+          <List.Icon name='comment' size='large' verticalAlign='middle' />
+          <Comment text={comment.text} phone={comment.phone} />
+        </List.Item>
+      )
+    )}
+  </List>
 );
 
 const Spinner = () => (
