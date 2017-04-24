@@ -5,6 +5,8 @@ import { map } from 'lodash/collection';
 import Link from 'components/elements/Link';
 import { postPath } from 'helpers/routes';
 
+import { Input } from 'semantic-ui-react';
+
 class SearchList extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,13 @@ class SearchList extends React.Component {
 
     return (
       <div>
-        <input type="text" onChange={this.handleSearchChange} />
+        <Input
+          fluid
+          type="text"
+          icon='search'
+          placeholder='Search...'
+          onChange={this.handleSearchChange}
+        />
         <ul>
           {foundBlogsList}
         </ul>
