@@ -4,10 +4,16 @@ import { map } from 'lodash/collection';
 
 import BlogItem from 'components/views/widgets/BlogItem';
 
+import { Segment } from 'semantic-ui-react';
+
 const BlogList = ({ blogs, handleLikeClick }) => (
-  <ul>
-    {map(blogs, (blog) => (<li key={blog.id}><BlogItem blog={blog} handleLikeClick={handleLikeClick} /></li>))}
-  </ul>
+  <Segment.Group>
+    {map(blogs, (blog) => (
+      <Segment key={blog.id}>
+        <BlogItem blog={blog} handleLikeClick={handleLikeClick} />
+      </Segment>)
+    )}
+  </Segment.Group>
 );
 
 BlogList.defaultProps = {

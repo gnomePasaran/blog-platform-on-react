@@ -3,12 +3,13 @@ import React, { PropTypes } from 'react';
 import { Button } from 'semantic-ui-react';
 
 const Like = ({ id, count, handleLikeClick }) => (
-  <div>
-    {`Likes ${count}`}
-    <Button onClick={() => handleLikeClick(id)}>
-      'Click me!'
-    </ Button>
-  </div>
+    <Button
+      onClick={() => handleLikeClick(id)}
+      color='blue'
+      content='Like'
+      icon='heart'
+      label={{ basic: true, color: 'blue', pointing: 'left', content: count }}
+    />
 );
 
 Like.defaultProps = {
