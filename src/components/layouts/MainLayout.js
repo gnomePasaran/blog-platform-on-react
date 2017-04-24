@@ -24,8 +24,8 @@ const Logo = () => (
   <Segment>
     <Header>
       <Link to='/'>Tinknetica Blog</Link>
-      <Button className='right floated'>
-        <Link to={contactPath}>Contact</Link>
+      <Button basic color='blue' className='right floated'>
+        <Link to={contactPath}>Contact Us</Link>
       </Button>
     </Header>
   </Segment>
