@@ -6,19 +6,26 @@ import DateField from 'components/views/elements/Form/DateField';
 
 import renderFields from 'components/views/elements/Form/RenderFields';
 
+import { Button, Header, Icon, Item } from 'semantic-ui-react';
+
 const EditPostView = ({ handleSubmit, pristine, submitting, reset }) => (
-  <div>
-    <h1>Edit Post</h1>
+  <Item>
+    <Header as='h1'>
+      <Icon name='pencil' className='blue' />
+      <Header.Content>
+        Edit Post
+      </Header.Content>
+    </Header>
     <form onSubmit={handleSubmit} className="ui form">
       <Field label="Title" component={renderFields} type="text" name="title" />
 
       <Field label="Created at" component={DateField} type="date" name="createdAt" />
 
       <Field label="Author" component={renderFields} type="text" name="author" />
-      {(!pristine && !submitting) && <button className="ui button" onClick={reset}>Clear</button>}
-      <input type="submit" className="ui button primary" value="Update" />
+      {(!pristine && !submitting) && <Button basic color='orange' onClick={reset}>Clear</Button>}
+      <Button type="submit" primary value="Update">Update</Button>
     </form>
-  </div>
+  </Item>
 );
 
 export default EditPostView;
