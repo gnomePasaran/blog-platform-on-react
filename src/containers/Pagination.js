@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 
-import PaginationContainer from 'components/containers/BlogPage/PaginationContainer';
-import { ITEMS_ON_PAGE } from 'constants/Data';
+import Pagination from 'components/views/Pagination';
+
+import { ITEMS_ON_PAGE as itemsOnPage } from 'constants/Data';
 
 import history from 'helpers/history';
 
@@ -17,13 +18,13 @@ function handlePageSelect(activePage) {
 
 const stateToProps = (state, ownProps) => {
   const itemsCount = state.posts.entries.count;
+  const pagesCount = itemsCount && Math.ceil(itemsCount / itemsOnPage);
 
   return {
-    itemsCount,
     activePage: fetchCurrentPosts(ownProps),
-    itemsOnPage: ITEMS_ON_PAGE,
+    pagesCount,
     handlePageSelect
   };
 };
 
-export default connect(stateToProps)(PaginationContainer);
+export default connect(stateToProps)(Pagination);
