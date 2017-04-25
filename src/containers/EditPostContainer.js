@@ -4,6 +4,7 @@ import { reduxForm, SubmissionError } from 'redux-form';
 import EditPostView from 'components/views/Edit';
 
 import { flowRight } from 'lodash/util';
+import { get } from 'lodash/object';
 
 import { editPost } from 'actions/EditPost';
 
@@ -24,9 +25,9 @@ const asyncValidate = (values, dispatch, props) => (
 
 const stateToProps = (state) => ({
   initialValues: {
-    title: state.post.entry.text,
-    createdAt: state.post.entry.meta.createdAt,
-    author: state.post.entry.meta.author,
+    title: get(state, 'post.entry.text', ''),//state.post.entry.text,
+    createdAt: get(state, 'post.entry.meta.createdAt', ''),//state.post.entry.meta.createdAt,
+    author: get(state, 'post.entry.meta.author', '')//state.post.entry.meta.author,
   }
 });
 
