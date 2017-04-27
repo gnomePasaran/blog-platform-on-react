@@ -25,9 +25,9 @@ const asyncValidate = (values, dispatch, props) => (
 
 const stateToProps = (state) => ({
   initialValues: {
-    title: get(state, 'post.entry.text', ''),//state.post.entry.text,
-    createdAt: get(state, 'post.entry.meta.createdAt', ''),//state.post.entry.meta.createdAt,
-    author: get(state, 'post.entry.meta.author', '')//state.post.entry.meta.author,
+    title: get(state, 'post.entry.text', ''),
+    createdAt: get(state, 'post.entry.meta.createdAt', ''),
+    author: get(state, 'post.entry.meta.author', '')
   }
 });
 
@@ -41,5 +41,6 @@ export default connect(
 )(reduxForm({
   form: 'editPost',
   asyncValidate,
-  onSubmit: submit
+  onSubmit: submit,
+  enableReinitialize: true
 })(EditPostView));
