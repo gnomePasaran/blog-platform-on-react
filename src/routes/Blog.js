@@ -26,9 +26,11 @@ const PostRoutes = {
   component: PostContainer,
   prepareData: (store, query, params) => {
     if (initialLoad()) return;
-    store.dispatch(fetchPost(params.id));
 
-    return store.dispatch(fetchComments(params.id));
+    return Promise.all([
+      store.dispatch(fetchPost(params.id)),
+      store.dispatch(fetchComments(params.id))
+    ]);
   }
 };
 
