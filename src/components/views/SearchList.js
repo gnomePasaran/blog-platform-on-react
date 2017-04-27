@@ -10,9 +10,10 @@ const SearchList = ({ results, changeSearchQuery,  processSearch, redirectToPost
 
   return (
     <Dropdown
+      icon='search'
+      style={{color: 'blue'}}
       placeholder='Search...'
-      fluid search selection
-      color="blue"
+      search selection
       options={results}
       onSearchChange={handleSearchChange}
       onChange={redirectToPost}
