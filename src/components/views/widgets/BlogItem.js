@@ -17,7 +17,7 @@ const BlogItem = ({ blog, handleLikeClick }) => (
     </Grid.Column>
 
     <Grid.Column width={8}>
-          <TextBox meta={blog.meta} text={<Link to={postPath(blog.id)}>{blog.text}</Link>} />
+      <TextBox meta={blog.meta} text={<Link to={postPath(blog.id)}>{blog.text}</Link>} />
     </Grid.Column>
     <Grid.Column width={5}>
       <Like id={blog.id} count={blog.meta.count} handleLikeClick={handleLikeClick} />
