@@ -1,50 +1,31 @@
 import React, { PropTypes } from 'react';
 
-import { map } from 'lodash/collection';
+import { Dropdown } from 'semantic-ui-react';
 
-import Link from 'components/elements/Link';
-import { postPath } from 'helpers/routes';
+const SearchList = ({ results, changeSearchQuery,  processSearch, redirectToPost }) => {
+  const handleSearchChange = (e, value) => {
+    processSearch(value);
+    changeSearchQuery(value);
+  };
 
-class SearchList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleSearchChange = this.handleSearchChange.bind(this);
-  }
-
-  handleSearchChange(e) {
-    this.props.processSearch(e.currentTarget.value);
-    this.props.changeSearchQuery(e.currentTarget.value);
-  }
-
-  render() {
-    const foundBlogsList = map(this.props.results,
-      (blog) => (
-        <li key={blog.id}>
-          <Link to={postPath(blog.id)}>{blog.text}</Link>
-        </li>
-      )
-    );
-
-    return (
-      <div>
-        <input type="text" onChange={this.handleSearchChange} />
-        <ul>
-          {foundBlogsList}
-        </ul>
-      </div>
-    );
-  }
-}
+  return (
+    <Dropdown
+      icon='search'
+      style={{color: 'blue'}}
+      placeholder='Search...'
+      search selection
+      options={results}
+      onSearchChange={handleSearchChange}
+      onChange={redirectToPost}
+    />
+  );
+};
 
 export default SearchList;
 
 SearchList.propTypes = {
-  foundBlogs: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.bool
-  ]),
-  processSearch: PropTypes.func,
+  results: PropTypes.array,
   changeSearchQuery: PropTypes.func,
-  results: PropTypes.array
+  processSearch: PropTypes.func,
+  redirectToPost: PropTypes.func
 };

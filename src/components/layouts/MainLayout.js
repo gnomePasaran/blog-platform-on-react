@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 
-import { Segment, Header, Container } from 'semantic-ui-react';
+import { Button, Segment, Header, Container } from 'semantic-ui-react';
 import Link from 'components/elements/Link';
+import { contactPath } from 'helpers/routes';
 
 const MainLayout = (props) => (
   <Container>
@@ -23,6 +24,9 @@ const Logo = () => (
   <Segment>
     <Header>
       <Link to='/'>Tinknetica Blog</Link>
+      <Button basic color='blue' className='right floated'>
+        <Link to={contactPath}>Contact Us</Link>
+      </Button>
     </Header>
   </Segment>
 );

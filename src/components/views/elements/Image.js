@@ -13,8 +13,8 @@ const Image = ({ img }) => (
 
 Image.defaultProps = {
   src: 'https://cdn3.iconfinder.com/data/icons/abstract-1/512/no_image-128.png',
-  width: 50,
-  height: 50,
+  width: 80,
+  height: 80,
   alt: 'There is no image',
 };
 
