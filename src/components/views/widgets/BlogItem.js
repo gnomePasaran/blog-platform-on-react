@@ -37,10 +37,12 @@ const BlogItem = ({ blog, handleLikeClick }) => (
 
 BlogItem.defaultProps = {
   blog: {
-    img:{},
+    id: 1,
+    img: {},
     text: '',
     meta: {}
   },
+  handleLikeClick: () => {},
 };
 
 BlogItem.propTypes = {
