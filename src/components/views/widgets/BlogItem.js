@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import Image from 'components/views/elements/Image';
 import TextBox from 'components/views/elements/TextBox';
