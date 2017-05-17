@@ -7,7 +7,7 @@ import normalizePhone from 'components/views/elements/Form/normalizePhone';
 import { Header, Icon, Segment } from 'semantic-ui-react';
 
 const CreateCommentForm = ({ handleSubmit, pristine, submitting, reset }) => (
-  <Segment>
+  <Segment className='create-comment'>
     <Header as='h2'>
       <Icon name='pencil' className='violet' />
       <Header.Content>
