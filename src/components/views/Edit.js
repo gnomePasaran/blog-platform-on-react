@@ -18,11 +18,11 @@ const EditPostView = ({ handleSubmit, pristine, submitting, reset }) => (
       </Header.Content>
     </Header>
     <form onSubmit={handleSubmit} className="ui form">
-      <Field label="Title" component={renderFields} type="text" nameFirst="title" />
+      <Field label="Title" component={renderFields} type="text" name="title" />
 
-      <Field label="Created at" component={DateField} type="date" nameFirst="createdAt" />
+      <Field label="Created at" component={DateField} type="date" name="createdAt" />
 
-      <Field label="Author" component={renderFields} type="text" nameFirst="author" />
+      <Field label="Author" component={renderFields} type="text" name="author" />
       {(!pristine && !submitting) && <Button basic color='orange' onClick={reset}>Clear</Button>}
       <Button type="submit" primary value="Update">Update</Button>
     </form>
