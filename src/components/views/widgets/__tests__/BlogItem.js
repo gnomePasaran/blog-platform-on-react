@@ -31,6 +31,13 @@ describe('Item', () => {
       expect(item.contains(header)).toEqual(true);
     });
 
+    it('should render Like button', () => {
+      const callback = () => {};
+      const item = mount(<Item blog={itemProps} handleLikeClick={ callback } />);
+      const likeButton = <Like id={5} count={0} handleLikeClick={ callback } />;
+
+      expect(item.contains(likeButton)).toEqual(true);
+    });
 
     it('should render usual item', () => {
       const item = shallow(<Item blog={itemProps} />);
