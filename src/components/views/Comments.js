@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { map } from 'lodash/collection';
 
@@ -7,7 +8,7 @@ import Comment from 'components/views/elements/Comment';
 import { Header, Icon, Loader, List } from 'semantic-ui-react';
 
 const Comments = ({ comments, isFetching, error }) => (
-  <List divided relaxed>
+  <List divided relaxed className='comments'>
     <Header as='h2'>
       <Icon name='comments' className='blue' />
       <Header.Content>

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Button, Segment, Header, Container } from 'semantic-ui-react';
 import Link from 'components/elements/Link';
@@ -24,9 +25,14 @@ const Logo = () => (
   <Segment>
     <Header>
       <Link to='/'>Tinknetica Blog</Link>
-      <Button basic color='blue' className='right floated'>
-        <Link to={contactPath}>Contact Us</Link>
-      </Button>
+      <Button
+        basic
+        color='blue'
+        className='right floated'
+        as={Link}
+        to={contactPath()}
+        content='Contact Us'
+      />
     </Header>
   </Segment>
 );
