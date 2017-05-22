@@ -1,12 +1,21 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import { Grid, Divider } from 'semantic-ui-react';
 
 const TextBox = ({ text, meta }) => (
   <span>
-    <div>
-      {text}
-      {`
-        Author: ${meta.author} | Created at: ${meta.createdAt || ''} | Updated at: ${meta.updatedAt || ''}`}
-    </div>
+    {text}
+    <Divider fitted />
+    <Grid.Row>
+      Author: {<i>{meta.author || 'Anonymous'}</i>}
+    </Grid.Row>
+    <Grid.Row>
+      {`Created at: ${meta.createdAt || ''}`}
+    </Grid.Row>
+    <Grid.Row>
+      {`Updated at: ${meta.updatedAt || ''}`}
+    </Grid.Row>
   </span>
 );
 

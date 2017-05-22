@@ -1,7 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import Helmet from 'react-helmet';
 
-import { Button } from 'semantic-ui-react';
+import { Button, Grid } from 'semantic-ui-react';
 
 import MainLayout from 'components/layouts/MainLayout';
 
@@ -25,5 +27,17 @@ MainLayoutContainer.propTypes = {
 export default MainLayoutContainer;
 
 const GoBackButton = () => (
-  <Button onClick={() => history.goBack()}>Назад</Button>
+  <Grid>
+    <Grid.Column>
+      <Button
+        basic
+        onClick={() => history.goBack()}
+        color='grey'
+        content='Back'
+        icon='left arrow'
+        labelPosition='left'
+        size='small'
+      />
+    </Grid.Column>
+  </Grid>
 );

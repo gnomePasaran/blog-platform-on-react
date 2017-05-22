@@ -1,12 +1,14 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { map } from 'lodash/collection';
 
 import { Menu } from 'semantic-ui-react';
 import Link from 'components/elements/Link';
+import Search from 'containers/Search';
 
 const Pagination = ({ activePage, pagesCount, handlePageSelect }) => (
-  <Menu pagination>
+  <Menu pointing>
     {
       map([...Array(pagesCount).keys()].map(x => ++x), (i) => (
         <Menu.Item
@@ -19,6 +21,9 @@ const Pagination = ({ activePage, pagesCount, handlePageSelect }) => (
         />
       ))
     }
+    <Menu.Menu position='right'>
+      <Search />
+    </Menu.Menu>
   </Menu>
 );
 

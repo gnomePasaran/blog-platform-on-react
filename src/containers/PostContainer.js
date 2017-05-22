@@ -7,7 +7,14 @@ import { createPostLike } from 'actions/Post';
 const stateToProps = (state) => ({
   item: state.post.entry,
   isFetching: state.post.isFetching,
-  error: state.post.error
+  error: state.post.error,
+  
+  comments: {
+    entries: state.comments.entries,
+    isFetching: state.comments.isFetching,
+    error: state.comments.error
+  },
+
 });
 
 const actionsToProps = (dispatch) => ({
