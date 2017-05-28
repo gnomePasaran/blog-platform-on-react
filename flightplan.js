@@ -1,6 +1,6 @@
 var plan = require('flightplan');
 
-var tmpDir = 'blog-client-' + new Data().getTime();
+var tmpDir = 'blog-client-' + new Date().getTime();
 var user = 'usver';
 
 plan.target('production', {
