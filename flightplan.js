@@ -4,8 +4,6 @@ var tmpDir = 'blog-client-' + new Date().getTime();
 var user = 'usver';
 
 plan.target('production', {
-  host: '13.81.209.64',
-  username: user,
   agent: process.env.SSH_AUTH_SOCK
 });
 
@@ -16,6 +14,7 @@ plan.local(function(local) {
 });
 
 plan.remote(function(remote) {
+  remote.log('Remote address on air');
   remote.exec('nvm use default');
   remote.log('Move folder to web');
   remote.exec('cp -R /tmp/' + tmpDir + ' ~');
