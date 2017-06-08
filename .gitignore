@@ -1,3 +1,5 @@
 /dist
 /node_modules
 /semantic/dist
+/src/static
+webpack-manifest.json
