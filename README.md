@@ -1,6 +1,4 @@
-# blog-platform-on-react
-
-# __React Blog plaftform__
+# __React Blog platform__
 
 __React, Redux, Webpack2, Babel, ES6__
 
